@@ -9,21 +9,41 @@
 /* Begin PBXBuildFile section */
 		571C2F7724A3D8B500CDA736 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C2F7624A3D8B500CDA736 /* AppDelegate.swift */; };
 		571C2F7924A3D8B500CDA736 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C2F7824A3D8B500CDA736 /* SceneDelegate.swift */; };
-		571C2F7B24A3D8B500CDA736 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C2F7A24A3D8B500CDA736 /* ViewController.swift */; };
-		571C2F7E24A3D8B500CDA736 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571C2F7C24A3D8B500CDA736 /* Main.storyboard */; };
 		571C2F8024A3D8B600CDA736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 571C2F7F24A3D8B600CDA736 /* Assets.xcassets */; };
 		571C2F8324A3D8B600CDA736 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571C2F8124A3D8B600CDA736 /* LaunchScreen.storyboard */; };
+		5774BB0924A3F0FC006B8550 /* ListScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5774BB0824A3F0FC006B8550 /* ListScreenViewController.xib */; };
+		5774BB0B24A3F910006B8550 /* ListScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774BB0A24A3F910006B8550 /* ListScreenViewController.swift */; };
+		579312FB24A3FAB200163F99 /* ListItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579312FA24A3FAB200163F99 /* ListItems.swift */; };
+		579312FD24A3FAE500163F99 /* ListScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579312FC24A3FAE500163F99 /* ListScreenPresenter.swift */; };
+		5793130424A3FEA100163F99 /* ListScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793130224A3FEA100163F99 /* ListScreenTableViewCell.swift */; };
+		5793130524A3FEA100163F99 /* ListScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5793130324A3FEA100163F99 /* ListScreenTableViewCell.xib */; };
+		5793130824A400AE00163F99 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793130724A400AE00163F99 /* NetworkService.swift */; };
+		5793130E24A4012800163F99 /* DetailsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793130D24A4012800163F99 /* DetailsScreenPresenter.swift */; };
+		5793131024A4013C00163F99 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793130F24A4013C00163F99 /* Details.swift */; };
+		5793131324A4016300163F99 /* DetailsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793131124A4016300163F99 /* DetailsScreenViewController.swift */; };
+		5793131424A4016300163F99 /* DetailsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5793131224A4016300163F99 /* DetailsScreenViewController.xib */; };
+		5793131624A4019A00163F99 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793131524A4019A00163F99 /* ModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		571C2F7324A3D8B500CDA736 /* GeniuseeMovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeniuseeMovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		571C2F7324A3D8B500CDA736 /* MovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		571C2F7624A3D8B500CDA736 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		571C2F7824A3D8B500CDA736 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		571C2F7A24A3D8B500CDA736 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		571C2F7D24A3D8B500CDA736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		571C2F7F24A3D8B600CDA736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		571C2F8224A3D8B600CDA736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		571C2F8424A3D8B600CDA736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5774BB0824A3F0FC006B8550 /* ListScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScreenViewController.xib; sourceTree = "<group>"; };
+		5774BB0A24A3F910006B8550 /* ListScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewController.swift; sourceTree = "<group>"; };
+		579312FA24A3FAB200163F99 /* ListItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItems.swift; sourceTree = "<group>"; };
+		579312FC24A3FAE500163F99 /* ListScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenPresenter.swift; sourceTree = "<group>"; };
+		5793130224A3FEA100163F99 /* ListScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenTableViewCell.swift; sourceTree = "<group>"; };
+		5793130324A3FEA100163F99 /* ListScreenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScreenTableViewCell.xib; sourceTree = "<group>"; };
+		5793130724A400AE00163F99 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5793130D24A4012800163F99 /* DetailsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenPresenter.swift; sourceTree = "<group>"; };
+		5793130F24A4013C00163F99 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		5793131124A4016300163F99 /* DetailsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenViewController.swift; sourceTree = "<group>"; };
+		5793131224A4016300163F99 /* DetailsScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsScreenViewController.xib; sourceTree = "<group>"; };
+		5793131524A4019A00163F99 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +68,7 @@
 		571C2F7424A3D8B500CDA736 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				571C2F7324A3D8B500CDA736 /* GeniuseeMovieFinder.app */,
+				571C2F7324A3D8B500CDA736 /* MovieFinder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,15 +76,113 @@
 		571C2F7524A3D8B500CDA736 /* GeniuseeMovieFinder */ = {
 			isa = PBXGroup;
 			children = (
+				5793131524A4019A00163F99 /* ModuleBuilder.swift */,
+				5793130624A4009000163F99 /* ServiceLayer */,
+				5774BB1224A3FA10006B8550 /* ListScreenModule */,
+				5793130924A400CB00163F99 /* DetailsScreenModule */,
+				5774BB0D24A3F984006B8550 /* AdditionalFiles */,
+			);
+			path = GeniuseeMovieFinder;
+			sourceTree = "<group>";
+		};
+		5774BB0C24A3F954006B8550 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5774BB0824A3F0FC006B8550 /* ListScreenViewController.xib */,
+				5774BB0A24A3F910006B8550 /* ListScreenViewController.swift */,
+				5793130124A3FE8000163F99 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5774BB0D24A3F984006B8550 /* AdditionalFiles */ = {
+			isa = PBXGroup;
+			children = (
 				571C2F7624A3D8B500CDA736 /* AppDelegate.swift */,
 				571C2F7824A3D8B500CDA736 /* SceneDelegate.swift */,
-				571C2F7A24A3D8B500CDA736 /* ViewController.swift */,
-				571C2F7C24A3D8B500CDA736 /* Main.storyboard */,
 				571C2F7F24A3D8B600CDA736 /* Assets.xcassets */,
 				571C2F8124A3D8B600CDA736 /* LaunchScreen.storyboard */,
 				571C2F8424A3D8B600CDA736 /* Info.plist */,
 			);
-			path = GeniuseeMovieFinder;
+			path = AdditionalFiles;
+			sourceTree = "<group>";
+		};
+		5774BB0E24A3F9BD006B8550 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				579312FA24A3FAB200163F99 /* ListItems.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5774BB0F24A3F9DD006B8550 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				579312FC24A3FAE500163F99 /* ListScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5774BB1224A3FA10006B8550 /* ListScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				5774BB0E24A3F9BD006B8550 /* Model */,
+				5774BB0C24A3F954006B8550 /* View */,
+				5774BB0F24A3F9DD006B8550 /* Presenter */,
+			);
+			path = ListScreenModule;
+			sourceTree = "<group>";
+		};
+		5793130124A3FE8000163F99 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5793130224A3FEA100163F99 /* ListScreenTableViewCell.swift */,
+				5793130324A3FEA100163F99 /* ListScreenTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5793130624A4009000163F99 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				5793130724A400AE00163F99 /* NetworkService.swift */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		5793130924A400CB00163F99 /* DetailsScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				5793130B24A400EE00163F99 /* Model */,
+				5793130C24A400FD00163F99 /* View */,
+				5793130A24A400E300163F99 /* Presenter */,
+			);
+			path = DetailsScreenModule;
+			sourceTree = "<group>";
+		};
+		5793130A24A400E300163F99 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5793130D24A4012800163F99 /* DetailsScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5793130B24A400EE00163F99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5793130F24A4013C00163F99 /* Details.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5793130C24A400FD00163F99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5793131124A4016300163F99 /* DetailsScreenViewController.swift */,
+				5793131224A4016300163F99 /* DetailsScreenViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,7 +202,7 @@
 			);
 			name = GeniuseeMovieFinder;
 			productName = GeniuseeMovieFinder;
-			productReference = 571C2F7324A3D8B500CDA736 /* GeniuseeMovieFinder.app */;
+			productReference = 571C2F7324A3D8B500CDA736 /* MovieFinder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -125,9 +243,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5774BB0924A3F0FC006B8550 /* ListScreenViewController.xib in Resources */,
 				571C2F8324A3D8B600CDA736 /* LaunchScreen.storyboard in Resources */,
 				571C2F8024A3D8B600CDA736 /* Assets.xcassets in Resources */,
-				571C2F7E24A3D8B500CDA736 /* Main.storyboard in Resources */,
+				5793130524A3FEA100163F99 /* ListScreenTableViewCell.xib in Resources */,
+				5793131424A4016300163F99 /* DetailsScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +258,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				571C2F7B24A3D8B500CDA736 /* ViewController.swift in Sources */,
+				5774BB0B24A3F910006B8550 /* ListScreenViewController.swift in Sources */,
 				571C2F7724A3D8B500CDA736 /* AppDelegate.swift in Sources */,
+				579312FB24A3FAB200163F99 /* ListItems.swift in Sources */,
+				5793130424A3FEA100163F99 /* ListScreenTableViewCell.swift in Sources */,
+				5793131624A4019A00163F99 /* ModuleBuilder.swift in Sources */,
 				571C2F7924A3D8B500CDA736 /* SceneDelegate.swift in Sources */,
+				5793130E24A4012800163F99 /* DetailsScreenPresenter.swift in Sources */,
+				579312FD24A3FAE500163F99 /* ListScreenPresenter.swift in Sources */,
+				5793131324A4016300163F99 /* DetailsScreenViewController.swift in Sources */,
+				5793130824A400AE00163F99 /* NetworkService.swift in Sources */,
+				5793131024A4013C00163F99 /* Details.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		571C2F7C24A3D8B500CDA736 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				571C2F7D24A3D8B500CDA736 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		571C2F8124A3D8B600CDA736 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,13 +406,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 378HZ25P52;
-				INFOPLIST_FILE = GeniuseeMovieFinder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GeniuseeMovieFinder/AdditionalFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vpelivan.GeniuseeMovieFinder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MovieFinder;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,13 +424,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 378HZ25P52;
-				INFOPLIST_FILE = GeniuseeMovieFinder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GeniuseeMovieFinder/AdditionalFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vpelivan.GeniuseeMovieFinder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MovieFinder;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
