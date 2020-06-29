@@ -11,21 +11,21 @@ import UIKit
 
 protocol Builder {
     static func CreateListScreen() -> UIViewController
-//    static func CreateDetailsScreen(filters: Filters?, presenter: DrinksViewPresenterProtocol?) -> UIViewController
+    static func CreateDetailsScreen(listItem: Result?) -> UIViewController
 }
 
 class ModuleBuilder: Builder {
     static func CreateListScreen() -> UIViewController {
         let view = ListScreenViewController()
-//        let presenter = DrinksViewPresenter(view: view)
-//        view.presenter = presenter
+        let presenter = ListScreenPresenter(view: view)
+        view.presenter = presenter
         return view
     }
     
-//    static func CreateFilters(filters: Filters?, presenter: DrinksViewPresenterProtocol?) -> UIViewController {
-//        let view = FiltersViewController()
-//        let presenter = FilterViewPresenter(view: view, filters: filters, coctailsPresenter: presenter)
-//        view.presenter = presenter
-//        return view
-//    }
+    static func CreateDetailsScreen(listItem: Result?) -> UIViewController {
+        let view = DetailsScreenViewController()
+        let presenter = DetailsScreenPresenter(view: view, listItem: listItem)
+        view.presenter = presenter
+        return view
+    }
 }
