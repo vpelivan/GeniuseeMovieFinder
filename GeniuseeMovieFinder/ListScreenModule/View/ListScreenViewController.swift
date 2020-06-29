@@ -40,6 +40,7 @@ class ListScreenViewController: UIViewController, ListScreenProtocol {
     //MARK: - Private Methods
     
     private func setupTableView() {
+        
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.register(UINib(nibName: "ListScreenTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
         tableView.delegate = self
@@ -47,6 +48,7 @@ class ListScreenViewController: UIViewController, ListScreenProtocol {
     }
     
     private func setupSearchBar() {
+        
         searchController = UISearchController(searchResultsController: nil)
         searchController?.searchResultsUpdater = self
         searchController?.obscuresBackgroundDuringPresentation = false
@@ -61,6 +63,7 @@ class ListScreenViewController: UIViewController, ListScreenProtocol {
 //MARK: - TableView DataSource Methods
 
 extension ListScreenViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController!.isActive && searchController?.searchBar.text != "" {
             guard let rowsNumber = presenter.searchResult?.results?.count else { return 0 }
@@ -80,6 +83,7 @@ extension ListScreenViewController: UITableViewDataSource {
 //MARK: - TableView Delegate Methods
 
 extension ListScreenViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let listItem = self.presenter.itemsToDisplayAt(indexPath: indexPath) else { return }
@@ -92,6 +96,15 @@ extension ListScreenViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         presenter.performSearch(from: searchController.searchBar.text!)
+        proceed()
+    }
+}
+
+extension ListScreenViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let movieText = searchBar.text?.lowercased() else { return }
+        presenter.performSearch(from: movieText)
         proceed()
     }
 }

@@ -80,6 +80,8 @@ class DetailsScreenPresenter: DetailsScreenPresenterProtocol {
         return cell
     }
     
+    
+    
     public func getTextCellData(for tableView: UITableView, indexPath: IndexPath) -> TextTableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextTableViewCell
@@ -87,11 +89,7 @@ class DetailsScreenPresenter: DetailsScreenPresenterProtocol {
         switch indexPath.row {
         case 1:
             cell.titleLabel.text = "Description:"
-            if listItem?.overview != nil && listItem?.overview != "" {
-                cell.descriptionLabel.text = listItem?.overview
-            } else {
-                cell.descriptionLabel.text = "No overview found."
-            }
+            cell.descriptionLabel.text = dataFetcher.getDescription(listItem: listItem)
         case 2:
             cell.titleLabel.text = "Release date:"
             cell.descriptionLabel.text = dataFetcher.getDate(from: listItem?.releaseDate)

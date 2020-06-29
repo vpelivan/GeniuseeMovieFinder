@@ -56,7 +56,9 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
     
     //MARK: - Public Methods
     
+    
     public func getCellData(for tableView: UITableView, indexPath: IndexPath) -> ListScreenTableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! ListScreenTableViewCell
         
         cell.tag = indexPath.row
@@ -73,6 +75,37 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
             cell.posterImageView.image = UIImage(named: "no-image")
             return cell
         }
+        fetchCellImage(cell, posterPath, indexPath)
+        return cell
+    }
+
+    public func performSearch(from string: String) {
+        
+        networkManager.performSearch(with: string) { (result) in
+            guard let result = result else { return }
+            self.searchResult = result
+            print(result)
+            self.view?.proceed()
+        }
+    }
+    
+    public func itemsToDisplayAt(indexPath: IndexPath) -> Result? {
+        
+        let item: Result?
+        
+        if (self.view?.searchController?.isActive)! && self.view?.searchController?.searchBar.text != "" {
+            item = searchResult?.results?[indexPath.row]
+        } else {
+            item = listItems?.results?[indexPath.row]
+        }
+        return item
+    }
+    
+    
+    //MARK: - Private Methods
+    
+    private func fetchCellImage(_ cell: ListScreenTableViewCell, _ posterPath: String, _ indexPath: IndexPath) {
+        
         cell.activityIndicator.isHidden = false
         cell.activityIndicator.startAnimating()
         networkManager.getPoster(posterPath: posterPath) { (image) in
@@ -84,28 +117,6 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
                 cell.activityIndicator.stopAnimating()
             }
         }
-        return cell
     }
-
-    public func performSearch(from string: String) {
-        networkManager.performSearch(with: string) { (result) in
-            guard let result = result else { return }
-            self.searchResult = result
-            print(result)
-            self.view?.proceed()
-        }
-    }
-    
-    public func itemsToDisplayAt(indexPath: IndexPath) -> Result? {
-        let item: Result?
-        
-        if (self.view?.searchController?.isActive)! && self.view?.searchController?.searchBar.text != "" {
-            item = searchResult?.results?[indexPath.row]
-        } else {
-            item = listItems?.results?[indexPath.row]
-        }
-        return item
-    }
-    
 }
 

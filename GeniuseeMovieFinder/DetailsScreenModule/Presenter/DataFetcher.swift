@@ -12,6 +12,14 @@ class DataFetcher {
     
     //MARK: - Public Methods
     
+    public func getDescription(listItem: Result?) -> String? {
+        if listItem?.overview != nil && listItem?.overview != "" {
+            return listItem?.overview
+        } else {
+            return "No overview found."
+        }
+    }
+    
     public func getDate(from string: String?) -> String {
         
         guard let string = string else { return "Release date not found." }

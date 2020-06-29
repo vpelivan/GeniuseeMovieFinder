@@ -43,10 +43,10 @@ class DetailsScreenViewController: UIViewController {
 }
 
 
-
 //MARK: - TableView DataSource Methods
 
 extension DetailsScreenViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard presenter.castAndCrew != nil, presenter.genres != nil else { return 3 }
         return 6
@@ -66,6 +66,7 @@ extension DetailsScreenViewController: UITableViewDataSource {
 //MARK: - TableView Delegate Methods
 
 extension DetailsScreenViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return UIScreen.main.bounds.width * 1.4
@@ -78,6 +79,7 @@ extension DetailsScreenViewController: UITableViewDelegate {
 //MARK: - MVP Protocol Extensions
 
 extension DetailsScreenViewController: DetailsScreenProtocol {
+    
     func proceed() {
         tableView.reloadData()
     }
