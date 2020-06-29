@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3A6A3713-AFB9-48C8-A8EC-27132C50CFD0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeniuseeMovieFinder/ListScreenModule/Presenter/ListScreenPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "performSearch(from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9D904D21-5528-41DC-902D-3D32C17513C7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -64,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "performSearch(with:completion:)"
+            landmarkName = "performSearch(filters:with:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

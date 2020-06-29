@@ -12,8 +12,8 @@ import Foundation
 // MARK: - ListItems
 
 struct ListItems: Codable {
-    let page, totalPages, totalResults: Int?
-    let results: [Result]?
+    var page, totalPages, totalResults: Int?
+    var results: [Result]?
 
     enum CodingKeys: String, CodingKey {
         case page, results

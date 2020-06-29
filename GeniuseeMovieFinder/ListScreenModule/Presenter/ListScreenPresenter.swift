@@ -21,9 +21,11 @@ protocol ListScreenPresenterProtocol: class {
     init(view: ListScreenProtocol)
     var listItems: ListItems? { get set }
     var searchResult: ListItems? { get set }
+    var currentSearchString: String? { get set }
     func getCellData(for tableView: UITableView, indexPath: IndexPath) -> ListScreenTableViewCell
     func performSearch(from string: String)
     func itemsToDisplayAt(indexPath: IndexPath) -> Result?
+    func performPagination(for indexPath: IndexPath)
 }
 
 class ListScreenPresenter: ListScreenPresenterProtocol {
@@ -33,6 +35,7 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
     weak var view: ListScreenProtocol?
     var listItems: ListItems?
     var searchResult: ListItems?
+    var currentSearchString: String?
 
     
     //MARK: - External Dependencies
@@ -55,7 +58,6 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
     
     
     //MARK: - Public Methods
-    
     
     public func getCellData(for tableView: UITableView, indexPath: IndexPath) -> ListScreenTableViewCell {
         
@@ -81,11 +83,21 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
 
     public func performSearch(from string: String) {
         
+        currentSearchString = string
         networkManager.performSearch(with: string) { (result) in
             guard let result = result else { return }
             self.searchResult = result
             print(result)
             self.view?.proceed()
+        }
+    }
+    
+    public func performPagination(for indexPath: IndexPath) {
+        
+        if isSearchSource() == true {
+            performSearchResultPagination(for: indexPath)
+        } else {
+            performListItemsPagination(for: indexPath)
         }
     }
     
@@ -103,6 +115,45 @@ class ListScreenPresenter: ListScreenPresenterProtocol {
     
     
     //MARK: - Private Methods
+    
+    private func performSearchResultPagination(for indexPath: IndexPath) {
+
+        guard let totalCount = searchResult?.results?.count else { return }
+        if indexPath.row == totalCount - 1 {
+            guard let page = searchResult?.page, let totalPages = searchResult?.totalPages else { return }
+            let nextPage = page + 1
+            guard nextPage <= totalPages else { return }
+            networkManager.performSearch(filters: "&page=\(nextPage)", with: currentSearchString) { (searchResult) in
+                guard let searchResult = searchResult else { return }
+                self.searchResult?.results! += searchResult.results!
+                self.searchResult?.page! += 1
+                self.view?.proceed()
+            }
+        }
+    }
+
+    private func performListItemsPagination(for indexPath: IndexPath) {
+        guard let totalCount = listItems?.results?.count else { return }
+        if indexPath.row == totalCount - 1 {
+            guard let page = listItems?.page, let totalPages = listItems?.totalPages else { return }
+            let nextPage = page + 1
+            guard nextPage <= totalPages else { return }
+            networkManager.getListItems(filters: "&page=\(nextPage)") { (listItems) in
+                guard let listItems = listItems else { return }
+                self.listItems?.results! += listItems.results!
+                self.listItems?.page! += 1
+                self.view?.proceed()
+            }
+        }
+    }
+    
+    private func isSearchSource() -> Bool {
+        if (self.view?.searchController?.isActive)! && self.view?.searchController?.searchBar.text != "" {
+            return true
+        } else {
+            return false
+        }
+    }
     
     private func fetchCellImage(_ cell: ListScreenTableViewCell, _ posterPath: String, _ indexPath: IndexPath) {
         

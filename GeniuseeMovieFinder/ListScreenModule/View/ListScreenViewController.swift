@@ -28,6 +28,7 @@ class ListScreenViewController: UIViewController, ListScreenProtocol {
         navigationController?.navigationBar.prefersLargeTitles = true
         setupTableView()
         setupSearchBar()
+
     }
     
     //MARK: - Public Methods
@@ -89,6 +90,10 @@ extension ListScreenViewController: UITableViewDelegate {
         guard let listItem = self.presenter.itemsToDisplayAt(indexPath: indexPath) else { return }
         let detailsVC = ModuleBuilder.CreateDetailsScreen(listItem: listItem)
         self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        presenter.performPagination(for: indexPath)
     }
 }
 

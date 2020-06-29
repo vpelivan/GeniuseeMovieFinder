@@ -69,10 +69,10 @@ class NetworkManager {
         }
     }
     
-    public func performSearch(with name: String?, completion: @escaping (ListItems?) -> ()) {
+    public func performSearch(filters: String = "", with name: String?, completion: @escaping (ListItems?) -> ()) {
         guard let name = name?.replacingOccurrences(of: " ", with: "%20").trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         let urlString = "search/movie?query=\(name)"
-        guard let baseUrl = URL(string: apiUrl + urlString + "&api_key=" + apiKey) else {
+        guard let baseUrl = URL(string: apiUrl + urlString + "&api_key=" + apiKey + filters) else {
             completion(nil)
             return
         }
