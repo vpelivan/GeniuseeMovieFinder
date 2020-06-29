@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListScreenViewController: UIViewController {
+class ListScreenViewController: UIViewController, ListScreenProtocol {
     
     //MARK: - IBOutlets
     
@@ -18,7 +18,7 @@ class ListScreenViewController: UIViewController {
     //MARK: - Variables
     
     var presenter: ListScreenPresenterProtocol!
-    var searchController: UISearchController!
+    var searchController: UISearchController?
     
     //MARK: - Lyfecycle Methods
     
@@ -30,7 +30,15 @@ class ListScreenViewController: UIViewController {
         setupSearchBar()
     }
     
+    //MARK: - Public Methods
+    
+    public func proceed() {
+        tableView.reloadData()
+    }
+    
+    
     //MARK: - Private Methods
+    
     private func setupTableView() {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.register(UINib(nibName: "ListScreenTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
@@ -40,19 +48,11 @@ class ListScreenViewController: UIViewController {
     
     private func setupSearchBar() {
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchController?.searchResultsUpdater = self
+        searchController?.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.placeholder = "Search for movie"
-    }
-    
-    //MARK: - The next function adds found results during search in filteredResultsArray
-    private func filterContentFor(searchText text: String) {
-        //        filteredResultsArray = allBreeds.filter{ (breed) -> Bool in
-        //            return (breed.name?.lowercased().contains(text.lowercased()))!
-        
-        
+        searchController?.searchBar.placeholder = "Search for movie"
     }
     
 }
@@ -62,6 +62,10 @@ class ListScreenViewController: UIViewController {
 
 extension ListScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController!.isActive && searchController?.searchBar.text != "" {
+            guard let rowsNumber = presenter.searchResult?.results?.count else { return 0 }
+            return rowsNumber
+        }
         guard let rowsNumber = presenter.listItems?.results?.count else { return 0 }
         return rowsNumber
     }
@@ -78,25 +82,16 @@ extension ListScreenViewController: UITableViewDataSource {
 extension ListScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let listItem = self.presenter.listItems?.results?[indexPath.row] else { return }
+        guard let listItem = self.presenter.itemsToDisplayAt(indexPath: indexPath) else { return }
         let detailsVC = ModuleBuilder.CreateDetailsScreen(listItem: listItem)
         self.navigationController?.pushViewController(detailsVC, animated: true)
-    }
-}
-
-
-//MARK: - MVP Protocol Extensions
-
-extension ListScreenViewController: ListScreenProtocol {
-    func proceed() {
-        tableView.reloadData()
     }
 }
 
 extension ListScreenViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentFor(searchText: searchController.searchBar.text!)
-        tableView.reloadData()
+        presenter.performSearch(from: searchController.searchBar.text!)
+        proceed()
     }
 }

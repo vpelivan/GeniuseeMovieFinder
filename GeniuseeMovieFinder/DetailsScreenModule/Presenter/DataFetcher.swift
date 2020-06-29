@@ -14,24 +14,24 @@ class DataFetcher {
     
     public func getDate(from string: String?) -> String {
         
-        guard let string = string else { return "No release date" }
+        guard let string = string else { return "Release date not found." }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let date = formatter.date(from: string)
         formatter.dateFormat = "MMMM d, yyyy"
-        guard let dateForSure = date else { return "No release date" }
+        guard let dateForSure = date else { return "Release date not found." }
         let formattedString = formatter.string(from: dateForSure)
         return formattedString
     }
     
     public func getDirectors(from crew: [Crew]?) -> String {
         
-        guard let crew = crew else {return "No directors data"}
+        guard let crew = crew else { return "Directors not found." }
         var directors = ""
         
         for person in crew {
             if person.department == "Directing" {
-                if person.job != nil {
+                if person.job != nil && person.job != "" && person.name != nil {
                     directors.append(contentsOf: "\(person.name!) (\(person.job!)), ")
                 } else {
                     directors.append(contentsOf: "\(person.name!), ")
@@ -39,12 +39,15 @@ class DataFetcher {
             }
         }
         directors = trimm(string: directors)
+        if directors == "" {
+            directors.append(contentsOf: "Directors not found.")
+        }
         return directors
     }
     
     public func getCast(from cast: [Cast]?) -> String {
         
-        guard let cast = cast else {return "No directors data"}
+        guard let cast = cast else { return "Cast list not found." }
         var castList = ""
         
         for person in cast {
@@ -55,18 +58,26 @@ class DataFetcher {
             }
         }
         castList = trimm(string: castList)
+        if castList == "" {
+            castList.append(contentsOf: "Cast list not found.")
+        }
         return castList
     }
     
     public func getGenres(from genres: [Genre]?) -> String {
         
-        guard let genres = genres else {return "No directors data"}
+        guard let genres = genres else {return "Genres not found."}
         var genresList = ""
         
         for genre in genres {
-            genresList.append(contentsOf: "\(genre.name!), ")
+            if genre.name != "" && genre.name != nil {
+                genresList.append(contentsOf: "\(genre.name!), ")
+            }
         }
         genresList = trimm(string: genresList)
+        if genresList == "" {
+            genresList.append(contentsOf: "Genres not found.")
+        }
         return genresList
     }
     

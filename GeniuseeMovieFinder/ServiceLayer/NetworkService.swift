@@ -27,11 +27,11 @@ class NetworkService: NetworkServiceProtocol {
         let session = URLSession.shared
         let task = session.dataTask(with: request) {
             (data, response, error) in
-            if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) {
+                    print("Status code: ", httpResponse.statusCode)
                     do
                     {
-                        print("Status code: ", httpResponse.statusCode)
                         guard let data = data else { return }
                         let decodedData = try JSONDecoder().decode(type.self, from: data)
                         completion(decodedData)
@@ -40,12 +40,13 @@ class NetworkService: NetworkServiceProtocol {
                         completion(nil)
                         print(error.localizedDescription)
                     }
+                    
+                } else {
+                    let alertMessage = "For some reasons the request could not be performed"
+                    self.alert(withTitle: "Request Error", message: alertMessage)
+                    completion(nil)
+                    return
                 }
-            } else {
-                completion(nil)
-                let alertMessage = "For some reasons the request could not be performed"
-                self.alert(withTitle: "Request Error", message: alertMessage)
-                return
             }
         }
         task.resume()

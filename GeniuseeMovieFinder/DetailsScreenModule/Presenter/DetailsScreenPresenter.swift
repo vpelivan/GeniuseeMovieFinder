@@ -64,7 +64,11 @@ class DetailsScreenPresenter: DetailsScreenPresenterProtocol {
     public func getPosterCellData(for tableView: UITableView, indexPath: IndexPath) -> PosterTableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PosterCell", for: indexPath) as! PosterTableViewCell
-        guard let posterPath = listItem?.posterPath else { return PosterTableViewCell() }
+        guard let posterPath = listItem?.posterPath else {
+            cell.posterImageView.contentMode = .center
+            cell.posterImageView.image = UIImage(named: "no-image")
+            return cell
+        }
         cell.activityIndicator.isHidden = false
         cell.activityIndicator.startAnimating()
         networkManager.getPoster(width: 500, posterPath: posterPath) { (image) in
@@ -83,7 +87,11 @@ class DetailsScreenPresenter: DetailsScreenPresenterProtocol {
         switch indexPath.row {
         case 1:
             cell.titleLabel.text = "Description:"
-            cell.descriptionLabel.text = listItem?.overview
+            if listItem?.overview != nil && listItem?.overview != "" {
+                cell.descriptionLabel.text = listItem?.overview
+            } else {
+                cell.descriptionLabel.text = "No overview found."
+            }
         case 2:
             cell.titleLabel.text = "Release date:"
             cell.descriptionLabel.text = dataFetcher.getDate(from: listItem?.releaseDate)

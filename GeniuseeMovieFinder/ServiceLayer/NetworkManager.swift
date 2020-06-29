@@ -13,10 +13,14 @@ class NetworkManager {
     
     //MARK: - Variables
     
-    let networkService = NetworkService()
     private let apiUrl = "https://api.themoviedb.org/3/"
     private let apiKey = "0a266d3bee8651753234b627f7bd0261"
     private let apiKeyParam = "?api_key="
+
+    
+    //MARK: - External Dependencies
+    
+    let networkService = NetworkService()
     
     
     //MARK: - Public Methods
@@ -28,11 +32,7 @@ class NetworkManager {
             completion(nil)
             return
         }
-        networkService.getData(into: ListItems.self, from: baseUrl) { result in
-            guard let result = result else {
-                completion(nil)
-                return
-            }
+        getData(into: ListItems.self, from: baseUrl) { result in
             completion(result)
         }
     }
@@ -70,29 +70,32 @@ class NetworkManager {
     }
     
     public func performSearch(with name: String?, completion: @escaping (ListItems?) -> ()) {
-        guard let name = name else { return }
+        guard let name = name?.replacingOccurrences(of: " ", with: "%20").trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         let urlString = "search/movie?query=\(name)"
-        guard let baseUrl = URL(string: apiUrl + urlString + apiKeyParam + apiKey) else {
+        guard let baseUrl = URL(string: apiUrl + urlString + "&api_key=" + apiKey) else {
             completion(nil)
             return
         }
-        networkService.getData(into: ListItems.self, from: baseUrl) { result in
-            guard let result = result else {
-                completion(nil)
-                return
-            }
+        getData(into: ListItems.self, from: baseUrl) { (result) in
             completion(result)
         }
     }
     
     
     //MARK: - Private Methods
+    
     private func getDetailsScreenData<T: Decodable>(urlString: String, type: T.Type, completion: @escaping (T?) -> ()) {
         
         guard let baseUrl = URL(string: apiUrl + urlString + apiKeyParam + apiKey) else {
             completion(nil)
             return
         }
+        getData(into: T.self, from: baseUrl) { (result) in
+            completion(result)
+        }
+    }
+    
+    private func getData<T: Decodable>(into: T.Type, from baseUrl: URL, completion: @escaping (T?) -> ()) {
         networkService.getData(into: T.self, from: baseUrl) { result in
             guard let result = result else {
                 completion(nil)
